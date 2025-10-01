@@ -5,23 +5,36 @@ use App\Livewire\Settings\Password;
 use App\Livewire\Settings\Profile;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('home');
-})->name('home');
-
+//Route::get('/', function () {
+//    return view('home');
+//})->name('home');
+Route::view("/", 'home')->name("home");
 Route::view("contact", "contact")->name('contact');
+Route::prefix('admin')->group(function () {
+    route::redirect('/', '/admin/records');
+    Route::get('records', function (){
+        $records = [
+            'Queen - Greatest Hits',
+            'The Rolling Stones - Sticky Fingers',
+            'The Beatles - Abbey Road'
+        ];
+        return view('admin.records.index', [
+            'records' => $records
+        ]);
+    })->name('admin.records');
+});
 
-Route::get('admin/records', function (){
-    $records = [                            // Define an array of records
-        'Queen - Greatest Hits',
-        'The Rolling Stones - Sticky Fingers',
-        'The Beatles - Abbey Road'
-    ];
-
-    return view('admin.records.index', [
-        'records' => $records  // Pass the $records array with the key 'records'
-    ]);
-})->name('records');
+//Route::get('admin/records', function (){
+//    $records = [                            // Define an array of records
+//        'Queen - Greatest Hits',
+//        'The Rolling Stones - Sticky Fingers',
+//        'The Beatles - Abbey Road'
+//    ];
+//
+//    return view('admin.records.index', [
+//        'records' => $records  // Pass the $records array with the key 'records'
+//    ]);
+//})->name('records');
 
 Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])

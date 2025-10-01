@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Vinyl Shop {{ isset($title) ? ': ' . strtolower($title) : '' }}</title>
     <meta name="description" content="{{ $description ?? 'Welcome to the Vinyl Shop' }}">
-{{--    <x-layouts.vinylshop.favicons/>--}}
+    <x-layouts.vinylshop.favicons/>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @fluxAppearance
     @stack('styles')
@@ -20,10 +20,10 @@
     </a>
     <flux:separator variant="subtle"/>
     {{-- Navbar at the top of the sidebat --}}
-{{--    <x-layouts.vinylshop.navbar/>--}}
+    <x-layouts.vinylshop.navbar/>
     <flux:spacer/>
     {{-- Profile section on the bottom of the sidebar --}}
-{{--    <x-layouts.vinylshop.profile/>--}}
+    <x-layouts.vinylshop.profile/>
 </flux:sidebar>
 
 {{-- Open/close sidebar on mibile --}}

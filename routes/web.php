@@ -6,8 +6,22 @@ use App\Livewire\Settings\Profile;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 })->name('home');
+
+Route::view("contact", "contact")->name('contact');
+
+Route::get('admin/records', function (){
+    $records = [                            // Define an array of records
+        'Queen - Greatest Hits',
+        'The Rolling Stones - Sticky Fingers',
+        'The Beatles - Abbey Road'
+    ];
+
+    return view('admin.records.index', [
+        'records' => $records  // Pass the $records array with the key 'records'
+    ]);
+})->name('records');
 
 Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])
